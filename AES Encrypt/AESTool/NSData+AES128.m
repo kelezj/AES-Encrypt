@@ -7,10 +7,8 @@
 //
 
 #import "NSData+AES128.h"
-
 @implementation NSData (AES128)
-- (NSData *)aes128_encrypt:(NSString *)key   //加密
-{
+- (NSData *)aes128_encrypt:(NSString *)key{ //加密
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
@@ -31,10 +29,7 @@
     free(buffer);
     return nil;
 }
-
-
-- (NSData *)aes128_decrypt:(NSString *)key   //解密
-{
+- (NSData *)aes128_decrypt:(NSString *)key{ //解密
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
@@ -51,10 +46,8 @@
                                           &numBytesDecrypted);
     if (cryptStatus == kCCSuccess) {
         return [NSData dataWithBytesNoCopy:buffer length:numBytesDecrypted];
-        
     }
     free(buffer);
     return nil;
 }
-
 @end
