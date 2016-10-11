@@ -18,14 +18,30 @@
  *  @param key    秘钥
  *  @return 加密后的字符串
  */
--(NSString *)aes128_encryptWithKey:(NSString *)key;
+-(NSString *)aes128_encryptBase64WithKey:(NSString *)key;
 
 /**
  *  解密（ECB 128位 PKCS7Padding补码 Base64编码输出）
  *  @param key    秘钥
  *  @return 解密后的字符串
  */
--(NSString *)aes128_decryptWithKey:(NSString *)key;
+-(NSString *)aes128_decryptBase64WithKey:(NSString *)key;
+
+/**
+ *  加密（ECB 128位 PKCS7Padding补码 结果16进制输出）
+ *  @param key    秘钥
+ *  @return 加密后的字符串
+ */
+-(NSString *)aes128_encryptH16WithKey:(NSString *)key;
+
+/**
+ *  解密（ECB 128位 PKCS7Padding补码 16进制编码输出）
+ *  @param key    秘钥
+ *  @return 解密后的字符串
+ */
+-(NSString *)aes128_decryptH16WithKey:(NSString *)key;
+
+
 
 /**
  *  加密（ECB 128位 PKCS7Padding补码 Base64编码输出）
@@ -33,7 +49,7 @@
  *  @param length 防篡改验证长度
  *  @return 加密后的字符串
  */
--(NSString *)aes128_encryptWithKey:(NSString *)key length:(NSInteger)length;
+-(NSString *)aes128_encryptBase64WithKey:(NSString *)key length:(NSInteger)length;
 
 /**
  *  解密（ECB 128位 PKCS7Padding补码 Base64编码输出）
@@ -41,6 +57,6 @@
  *  @param length 防篡改验证长度
  *  @return 解密后的字符串
  */
--(NSString *)aes128_decryptWithKey:(NSString *)key length:(NSInteger)length;
+-(NSString *)aes128_decryptBase64WithKey:(NSString *)key length:(NSInteger)length;
 
 @end

@@ -18,18 +18,24 @@
     [super viewDidLoad];
     
     NSString *str = @"uuid=5B300CBD-28AD-4478-BEE6-861FAFEA943A&device=ios";
-    NSString *encryptStr = [str aes128_encryptWithKey:@"1234567890123456"];
-    NSLog(@"加密后的结果--%@",encryptStr);
-    NSString *decryptStr = [encryptStr aes128_decryptWithKey:@"1234567890123456"];
-    NSLog(@"解密后的结果--%@",decryptStr);
+    // Base64
+    NSString *encryptStr = [str aes128_encryptBase64WithKey:@"1234567890123456"];
+    NSLog(@"加密后的结果(Base64)--%@",encryptStr);
+    NSString *decryptStr = [encryptStr aes128_decryptBase64WithKey:@"1234567890123456"];
+    NSLog(@"解密后的结果(Base64)--%@",decryptStr);
+    // 16进制
+    NSString *encryptStr16 = [str aes128_encryptH16WithKey:@"1234567890123456"];
+    NSLog(@"加密后的结果(H16)--%@",encryptStr16);
+    NSString *decryptStr16 = [encryptStr16 aes128_decryptH16WithKey:@"1234567890123456"];
+    NSLog(@"解密后的结果(H16)--%@",decryptStr16);
     
-    // 防篡改加密
-    NSString *highEncryptStr = [str aes128_encryptWithKey:@"1234567890123456" length:12];
-    NSLog(@"防篡改加密后的结果--%@",highEncryptStr);
+    // 防篡改加密(Base64)
+    NSString *highEncryptStr = [str aes128_encryptBase64WithKey:@"1234567890123456" length:12];
+    NSLog(@"防篡改加密后的结果(Base64)--%@",highEncryptStr);
     // 模拟服务端验证
-    NSString *highDecryptStr = [highEncryptStr aes128_decryptWithKey:@"1234567890123456" length:12];
+    NSString *highDecryptStr = [highEncryptStr aes128_decryptBase64WithKey:@"1234567890123456" length:12];
     if (highDecryptStr) {
-        NSLog(@"防篡改解密后的结果--%@",highDecryptStr);
+        NSLog(@"防篡改解密后的结果(Base64)--%@",highDecryptStr);
     }else{
         NSLog(@"已篡改");
     }
